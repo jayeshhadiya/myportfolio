@@ -172,6 +172,9 @@ body{
  color: #F6DCAC;
  transform: rotate(360deg);
 }
+
+/* Styles for Skills Section */
+
 /* Styles for Skills Section */
 .skills-section {
   padding: 80px 0;
@@ -199,7 +202,7 @@ body{
   flex-basis: calc(25% - 30px);
   margin-bottom: 30px;
   padding: 20px;
-  background-color: #01204E;
+  border: 2px solid #e5e5e5; /* Add border */
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
