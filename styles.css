@@ -111,7 +111,7 @@ body{
   display: flex;
   justify-content: center; /* Center the elements horizontally */
   align-items: center;
-  padding-top: 40px; /* Adjust padding as needed */
+  padding-top: 30px; /* Adjust padding as needed */
 }
 
 .FirstElement.adjusted-padding {
@@ -171,7 +171,7 @@ body{
  /*---------------------------About---------------------------*/
 
 .about-area{
-  padding-top: 130px;
+  padding-top: 60px;
 }
 .about{
   display: flex;
@@ -232,7 +232,7 @@ body{
 /*---------------------------Skill--------------------------*/
 
 .skills-section {
-  padding: 80px 0;
+  padding: 30px 0;
 }
 
 .skills-section .container {
@@ -366,7 +366,7 @@ body{
 /*---------------------------Projects---------------------------*/
 
 .project-content{
-  padding: 90px 0;
+  padding: 30px 0;
   /* color:#fff;  */
 }
 .project-title{
@@ -424,7 +424,7 @@ body{
 /*---------------------------Contact Me---------------------------*/
 
 .contact-content{
-  padding: 100px 0;
+  padding: 30px 0;
   color: #028391;
   text-align: center;
 }
