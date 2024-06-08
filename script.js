@@ -1,73 +1,61 @@
 $(document).ready(function() {
 
   //sticky header
-    $(window).scroll(function() {
-      if ($(this).scrollTop() > 1) {
-        $(".header-area").addClass("sticky");
-      } else {
-        $(".header-area").removeClass("sticky");
-      }
-  
-      // Update the active section in the header
-      updateActiveSection();
-    });
-    
-    // Mobile menu toggle
-    $('.menu_icon').click(function() {
-      $('.navbar').toggle();
-    });
-  
-    $(".header ul li a").click(function(e) {
-      e.preventDefault(); 
-  
-      var target = $(this).attr("href");
-  
-      if ($(target).hasClass("active-section")) {
-        return; 
-      }
-  
-      if (target === "#home") {
-        $("html, body").animate(
-          {
-            scrollTop: 0 
-          },
-          500
-        );
-      } else {
-        var offset = $(target).offset().top - 40; 
-  
-        $("html, body").animate(
-          {
-            scrollTop: offset
-          },
-          500
-        );
-      }
-  
-      $(".header ul li a").removeClass("active");
-      $(this).addClass("active");
-    });
-  
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 1) {
+      $(".header-area").addClass("sticky");
+    } else {
+      $(".header-area").removeClass("sticky");
+    }
 
-    //Initial content revealing js
-    ScrollReveal({
-      distance: "100px",
-      duration: 2000,
-      delay: 200
-    });
+    // Update the active section in the header
+    updateActiveSection();
+  });
   
-    ScrollReveal().reveal(".header a, .profile-photo, .about-content, .education", {
-      origin: "left"
-    });
-    ScrollReveal().reveal(".header ul, .profile-text, .about-skills, .internship", {
-      origin: "right"
-    });
-    ScrollReveal().reveal(".project-title, .contact-title", {
-      origin: "top"
-    });
-    ScrollReveal().reveal(".projects, .contact", {
-      origin: "bottom"
-    });
+  // Mobile menu toggle
+  $('.menu_icon').click(function() {
+    $('.navbar').toggle();
+  });
+
+  $(".header ul li a").click(function(e) {
+    e.preventDefault(); 
+
+    var target = $(this).attr("href");
+
+    if ($(target).hasClass("active-section")) {
+      return; 
+    }
+
+    if (target === "#home") {
+      $("html, body").scrollTop(0);
+    } else {
+      var offset = $(target).offset().top - 40;
+      $("html, body").scrollTop(offset);
+    }
+
+    $(".header ul li a").removeClass("active");
+    $(this).addClass("active");
+  });
+
+  //Initial content revealing js
+  ScrollReveal({
+    distance: "100px",
+    duration: 2000,
+    delay: 200
+  });
+
+  ScrollReveal().reveal(".header a, .profile-photo, .about-content, .education", {
+    origin: "left"
+  });
+  ScrollReveal().reveal(".header ul, .profile-text, .about-skills, .internship", {
+    origin: "right"
+  });
+  ScrollReveal().reveal(".project-title, .contact-title", {
+    origin: "top"
+  });
+  ScrollReveal().reveal(".projects, .contact", {
+    origin: "bottom"
+  });
 
   //contact form to excel sheet
   const scriptURL = 'https://script.google.com/macros/s/AKfycbzUSaaX3XmlE5m9YLOHOBrRuCh2Ohv49N9bs4bew7xPd1qlgpvXtnudDs5Xhp3jF-Fx/exec';
@@ -85,60 +73,52 @@ $(document).ready(function() {
               form.reset()
           })
           .catch(error => console.error('Error!', error.message))
-  })
-    
   });
   
-  function updateActiveSection() {
-    var scrollPosition = $(window).scrollTop();
-  
-    // Checking if scroll position is at the top of the page
-    if (scrollPosition === 0) {
-      $(".header ul li a").removeClass("active");
-      $(".header ul li a[href='#home']").addClass("active");
-      return;
-    }
-  
-    // Iterate through each section and update the active class in the header
-    $("section").each(function() {
-      var target = $(this).attr("id");
-      var offset = $(this).offset().top;
-      var height = $(this).outerHeight();
-  
-      if (
-        scrollPosition >= offset - 40 &&
-        scrollPosition < offset + height - 40
-      ) {
-        $(".header ul li a").removeClass("active");
-        $(".header ul li a[href='#" + target + "']").addClass("active");
-      }
-    });
+});
+
+function updateActiveSection() {
+  var scrollPosition = $(window).scrollTop();
+
+  // Checking if scroll position is at the top of the page
+  if (scrollPosition === 0) {
+    $(".header ul li a").removeClass("active");
+    $(".header ul li a[href='#home']").addClass("active");
+    return;
   }
 
+  // Iterate through each section and update the active class in the header
+  $("section").each(function() {
+    var target = $(this).attr("id");
+    var offset = $(this).offset().top;
+    var height = $(this).outerHeight();
 
-  document.addEventListener("DOMContentLoaded", function() {
-    const bgAudio = document.getElementById("bgAudio");
-    const toggleButton = document.getElementById("toggleMusic");
-  
-    // Start playing the audio automatically
-    bgAudio.play().catch(error => {
-      console.log("User interaction required to start audio: ", error);
-    });
-  
-    toggleButton.addEventListener("click", function() {
-      if (bgAudio.paused) {
-        bgAudio.play();
-        toggleButton.innerHTML = '<i class="fas fa-volume-up"></i>';
-      } else {
-        bgAudio.pause();
-        toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
-      }
-    });
+    if (
+      scrollPosition >= offset - 40 &&
+      scrollPosition < offset + height - 40
+    ) {
+      $(".header ul li a").removeClass("active");
+      $(".header ul li a[href='#" + target + "']").addClass("active");
+    }
   });
-  
-  
-  
+}
 
-  
+document.addEventListener("DOMContentLoaded", function() {
+  const bgAudio = document.getElementById("bgAudio");
+  const toggleButton = document.getElementById("toggleMusic");
 
- 
+  // Start playing the audio automatically
+  bgAudio.play().catch(error => {
+    console.log("User interaction required to start audio: ", error);
+  });
+
+  toggleButton.addEventListener("click", function() {
+    if (bgAudio.paused) {
+      bgAudio.play();
+      toggleButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+    } else {
+      bgAudio.pause();
+      toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    }
+  });
+});
